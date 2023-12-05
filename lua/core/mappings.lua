@@ -31,6 +31,11 @@ M.general = {
     ["<C-a>"] =  {"<Home>ggvG","Select All"},
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
+    ["<C-Right>"] = { "<cmd> tabNext <CR>", "Next Tab" },
+    ["<C-Left>"] = { "<cmd> tabprevious <CR>", "Next Tab" },
+    ["<C-Up>"] = { "<cmd> tabnew <CR>", "Next Tab" },
+    ["<C-Down>"] = { "<cmd> tabclose <CR>", "Next Tab" },
+
 
 
     -- Copy all
