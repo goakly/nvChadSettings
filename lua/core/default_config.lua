@@ -52,7 +52,9 @@ M.ui = {
     load_on_startup = true,
 
     header = {
-     "           HI :)           ",
+      "           HI :)           ",
+
+
     },
 
     buttons = {

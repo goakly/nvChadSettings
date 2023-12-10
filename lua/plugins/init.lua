@@ -54,7 +54,9 @@ local default_plugins = {
       require("nvim-web-devicons").setup(opts)
     end,
   },
-
+  {
+    "ThePrimeagen/harpoon"
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.7",

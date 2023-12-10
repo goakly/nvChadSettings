@@ -31,14 +31,19 @@ M.general = {
     ["<C-a>"] =  {"<Home>ggvG","Select All"},
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
-    ["<C-Right>"] = { "<cmd> tabNext <CR>", "Next Tab" },
-    ["<C-Left>"] = { "<cmd> tabprevious <CR>", "Next Tab" },
-    ["<C-Up>"] = { "<cmd> tabnew <CR>", "Next Tab" },
-    ["<C-Down>"] = { "<cmd> tabclose <CR>", "Next Tab" },
+    ["<C-Up>"] = { "<cmd> tabnew <CR>", "New Tab" },
+    ["<C-Right>"] = { "<cmd> tabnext <CR>", "Next Tab" },
+    ["<C-Down>"] = { "<cmd> tabclose <CR>", "Previous Tab" },
 
+    ["<C-Left>"] = { "<cmd> tabprevious <CR>", "Previous Tab" },
 
+    --Harpoon
+    ["<C-p>"] = { "<cmd> lua require('harpoon.mark').add_file() <CR>", "Fire Harpoon" },
+    ["<C-x>"] = { "<cmd> lua require('harpoon.ui').toggle_quick_menu() <CR>", "Open Harpoon Menu" },
+    ["<C-/>"] = { "<cmd> lua require('harpoon.ui').nav_next() <CR>", "Next Poon" },
+    ["<C-,>"] = { "<cmd> lua require('harpoon.ui').nav_prev() <CR>", "Prev Poon" },
 
-    -- Copy all
+      -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
     -- line numbers
