@@ -1,2 +1,2 @@
 # nvChadSettings
-nmChad settings optimized to my genius.
+nvChad settings optimized to my genius.
