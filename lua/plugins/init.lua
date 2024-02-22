@@ -4,14 +4,44 @@ local default_plugins = {
 
   "nvim-lua/plenary.nvim",
   "vijaymarupudi/nvim-fzf",
-  {
+  
+    "kdheepak/lazygit.nvim",
+    {
     "NvChad/base46",
     branch = "v2.0",
     build = function()
       require("base46").load_all_highlights()
     end,
   },
-
+  {
+    "m-demare/hlargs.nvim",
+    init = function()
+      require("hlargs").setup {
+        color = "#7FEC35",
+        use_colorpalette = false,
+        sequential_colorpalette = true,
+        colorpalette = {
+          { fg = "#ef9062" },
+          { fg = "#3AC6BE" },
+          { fg = "#35D27F" },
+          { fg = "#EB75D6" },
+          { fg = "#E5D180" },
+          { fg = "#8997F5" },
+          { fg = "#D49DA5" },
+          { fg = "#7FEC35" },
+          { fg = "#F6B223" },
+          { fg = "#F67C1B" },
+          { fg = "#DE9A4E" },
+          { fg = "#BBEA87" },
+          { fg = "#EEF06D" },
+          { fg = "#8FB272" },
+        },
+        textDecorations = {
+          italic = true,
+        },
+      }
+    end,
+  },
   {
     "NvChad/ui",
     branch = "v2.0",
@@ -55,7 +85,17 @@ local default_plugins = {
     end,
   },
   {
-    "ThePrimeagen/harpoon"
+    "ThePrimeagen/harpoon",
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -231,7 +271,7 @@ local default_plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }},
+    dependencies = { "nvim-treesitter/nvim-treesitter", { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
     cmd = "Telescope",
     init = function()
       require("core.utils").load_mappings "telescope"
