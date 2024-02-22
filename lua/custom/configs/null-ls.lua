@@ -13,6 +13,14 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+  --groovy
+  b.formatting.npm_groovy_lint.with{
+    filetypes = {"groovy"}
+  },
+  b.diagnostics.npm_groovy_lint.with{
+    filetypes = {"groovy"}
+  }
 }
 
 null_ls.setup {
