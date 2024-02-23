@@ -5,7 +5,10 @@ local default_plugins = {
   "nvim-lua/plenary.nvim",
   "vijaymarupudi/nvim-fzf",
   
+    {
     "kdheepak/lazygit.nvim",
+    lazy = false
+  },
     {
     "NvChad/base46",
     branch = "v2.0",

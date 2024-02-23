@@ -16,6 +16,8 @@ M.general = {
     ["<A-j>"] = { "<ESC><cmd> m .+1 <CR>==gi", "Move line down by one" },
     ["<A-k>"] = { "<ESC><cmd> m .-2 <CR>==gi", "Move line up by one" },
     ["<C-s>"] = { "<cmd> w <CR><ESC>", "Save file" },
+
+
   },
 
   n = {
@@ -62,6 +64,9 @@ M.general = {
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
+
+    -- Open LazyGit
+    ["<leader>gg"] = { ":LazyGit <CR>", "Open LazyGit" },
 
     ["<leader>fm"] = {
       function()
