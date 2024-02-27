@@ -2,13 +2,13 @@
 -- List of all default plugins & their definitions
 local default_plugins = {
 
-  "nvim-lua/plenary.nvim",
-  "vijaymarupudi/nvim-fzf",
-  
-    {
-    "kdheepak/lazygit.nvim",
-    lazy = false
+  { "nvim-lua/plenary.nvim",
+    config = function ()
+      require("lsp_lines").setup()
+    end
   },
+  "vijaymarupudi/nvim-fzf",
+    "kdheepak/lazygit.nvim",
     {
     "NvChad/base46",
     branch = "v2.0",
@@ -17,40 +17,10 @@ local default_plugins = {
     end,
   },
   {
-    "m-demare/hlargs.nvim",
-    init = function()
-      require("hlargs").setup {
-        color = "#7FEC35",
-        use_colorpalette = false,
-        sequential_colorpalette = true,
-        colorpalette = {
-          { fg = "#ef9062" },
-          { fg = "#3AC6BE" },
-          { fg = "#35D27F" },
-          { fg = "#EB75D6" },
-          { fg = "#E5D180" },
-          { fg = "#8997F5" },
-          { fg = "#D49DA5" },
-          { fg = "#7FEC35" },
-          { fg = "#F6B223" },
-          { fg = "#F67C1B" },
-          { fg = "#DE9A4E" },
-          { fg = "#BBEA87" },
-          { fg = "#EEF06D" },
-          { fg = "#8FB272" },
-        },
-        textDecorations = {
-          italic = true,
-        },
-      }
-    end,
-  },
-  {
     "NvChad/ui",
     branch = "v2.0",
     lazy = false,
   },
-
   {
     "NvChad/nvterm",
     init = function()
