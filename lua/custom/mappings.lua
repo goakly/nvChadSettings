@@ -6,6 +6,7 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    -- LSP line mappings
     ["<leader>yl"] = {
       function()
         require("lsp_lines").toggle()
@@ -16,24 +17,22 @@ M.general = {
     },
     ["<leader>yo"] = {
       function()
-        if vim.diagnostic.config().virtual_lines then
-          require("lsp_lines").toggle()
-        end
+          vim.diagnostic.config { virtual_lines = false }
           vim.diagnostic.config { virtual_text = false }
       end,
-      "Toggle lsp_lines",
+      "Turns off diagnostic text",
       opts = { nowait = true },
     },
     ["<leader>yt"] = {
       function()
-        if vim.diagnostic.config().virtual_lines then
-          require("lsp_lines").toggle()
-        end
+          vim.diagnostic.config { virtual_lines = false }
           vim.diagnostic.config { virtual_text = true }
       end,
-      "Toggle lsp_lines",
+      "Toggle LSP diagnostic text",
       opts = { nowait = true },
     },
+
+
   },
   v = {
     [">"] = { ">gv", "indent" },
