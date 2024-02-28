@@ -16,8 +16,6 @@ M.general = {
     ["<A-j>"] = { "<ESC><cmd> m .+1 <CR>==gi", "Move line down by one" },
     ["<A-k>"] = { "<ESC><cmd> m .-2 <CR>==gi", "Move line up by one" },
     ["<C-s>"] = { "<cmd> w <CR><ESC>", "Save file" },
-
-
   },
 
   n = {
@@ -30,7 +28,7 @@ M.general = {
     ["<A-j>"] = { "<cmd> m .+1 <CR>==", "Move line down by one" },
     ["<A-k>"] = { "<cmd> m .-2 <CR>==", "Move line up by one" },
     -- Select all
-    ["<C-a>"] =  {"<Home>ggvG","Select All"},
+    ["<C-a>"] = { "<Home>ggvG", "Select All" },
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
     ["<C-Up>"] = { "<cmd> tabnew <CR>", "New Tab" },
@@ -45,7 +43,7 @@ M.general = {
     ["<C-/>"] = { "<cmd> lua require('harpoon.ui').nav_next() <CR>", "Next Poon" },
     ["<C-,>"] = { "<cmd> lua require('harpoon.ui').nav_prev() <CR>", "Prev Poon" },
 
-      -- Copy all
+    -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
     -- line numbers
@@ -86,7 +84,7 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
-    ["<A-j>"] = { "<cmd> m  '>+1<CR>gv=gv","Move line down by one" },
+    ["<A-j>"] = { "<cmd> m  '>+1<CR>gv=gv", "Move line down by one" },
     ["<A-k>"] = { "<cmd> m '<-2<CR>gv=gv", "Move line up by one" },
   },
 
@@ -95,7 +93,7 @@ M.general = {
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-   ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
+    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
   },
 }
 
@@ -103,6 +101,7 @@ M.tabufline = {
   plugin = true,
 
   n = {
+    --
     -- cycle through buffers
     ["<tab>"] = {
       function()
@@ -248,7 +247,10 @@ M.lspconfig = {
 
     ["<leader>q"] = {
       function()
-        vim.diagnostic.setloclist()
+        vim.diagnostic.setloclist { open = false } -- don't open and focus
+        local window = vim.api.nvim_get_current_win()
+        vim.cmd.lwindow() -- open+focus loclist if has entries, else close -- this is the magic toggle command
+        vim.api.nvim_set_current_win(window) -- restore focus to window you were editing (delete this if you want to stay in loclist)
       end,
       "Diagnostic setloclist",
     },
