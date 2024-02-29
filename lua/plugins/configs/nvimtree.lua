@@ -1,4 +1,22 @@
+local utils = require "core.utils"
 local options = {
+
+  on_attach = function(bufnr)
+    local api = require "nvim-tree.api"
+
+    local function opts(desc)
+      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
+
+    -- allows for navigation with l and h
+    vim.keymap.set("n", "h", api.node.navigate.parent, opts "Up")
+    vim.keymap.set("n", "l", api.node.open.edit, opts "Open")
+    -- open file with space
+    vim.keymap.set("n", "<Space>", api.node.open.edit, opts "Open")
+  end,
   filters = {
     dotfiles = false,
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
