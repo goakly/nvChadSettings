@@ -42,22 +42,7 @@ M.general = {
   },
 }
 
-M.nvimtree = {
-  n = {
-    ["l"] = {
-      function()
-         require("nvim-tree.api").node.open.edit()
-      end,
-      "Open directory/file",
-    },
-    ["h"] = {
-      function()
-         require("nvim-tree.api").node.navigate.parent_close()
-      end,
-      "Open directory/file",
-    },
-  },
-}
+
 -- more keybinds!
 
 return M
