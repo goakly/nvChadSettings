@@ -9,7 +9,7 @@ M.general = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
     ["<leader>vs"] = { "<cmd> vs <CR>", "Split vertical", opts = { nowait = true } },
-    ["<leader>hs"] = { "<cmd> hs <CR>", "Split Horizontal", opts = { nowait = true } },
+    ["<leader>hs"] = { "<cmd> split <CR>", "Split Horizontal", opts = { nowait = true } },
 
     -- LSP line mappings
     ["<leader>yl"] = {
