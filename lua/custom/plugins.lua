@@ -5,6 +5,18 @@ local plugins = {
 
   -- Override plugin definition options
   {"ErichDonGubler/lsp_lines.nvim"},
+
+  { "sitiom/nvim-numbertoggle", lazy = false },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    lazy = false,
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinNew" },
+  },
+  { "ErichDonGubler/lsp_lines.nvim" },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -28,6 +40,8 @@ local plugins = {
     },
     enabled= true,
     lazy = false
+    enabled = true,
+    lazy = false,
   },
   -- override plugin configs
   {
