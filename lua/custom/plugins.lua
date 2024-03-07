@@ -5,6 +5,8 @@ local plugins = {
 
   -- Override plugin definition options
   {"ErichDonGubler/lsp_lines.nvim"},
+  {"HiPhish/rainbow-delimiters.nvim",
+  lazy = false},
   {
     "neovim/nvim-lspconfig",
     dependencies = {
