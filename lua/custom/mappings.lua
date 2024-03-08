@@ -22,27 +22,26 @@ M.general = {
     },
     ["<leader>yo"] = {
       function()
-          vim.diagnostic.config { virtual_lines = false }
-          vim.diagnostic.config { virtual_text = false }
+        vim.diagnostic.config { virtual_lines = false }
+        vim.diagnostic.config { virtual_text = false }
       end,
       "Turns off diagnostic text",
       opts = { nowait = true },
     },
     ["<leader>yt"] = {
       function()
-          vim.diagnostic.config { virtual_lines = false }
-          vim.diagnostic.config { virtual_text = true }
+        vim.diagnostic.config { virtual_lines = false }
+        vim.diagnostic.config { virtual_text = true }
       end,
       "Toggle LSP diagnostic text",
       opts = { nowait = true },
     },
-
-
   },
   v = {
     [">"] = { ">gv", "indent" },
   },
 }
+
 
 -- more keybinds!
 
