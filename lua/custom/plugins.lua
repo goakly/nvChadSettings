@@ -1,11 +1,50 @@
 local overrides = require("custom.configs.overrides")
 
----@type NvPluginSpec[]
+local gitVersion = require("core.utils").get_latest_git_timestamp()
+--@type NvPluginSpec[]
 local plugins = {
 
   -- Override plugin definition options
   {"ErichDonGubler/lsp_lines.nvim"},
+  {"tpope/vim-fugitive",
+    lazy = false
+  },
+  {
+    'nvimdev/dashboard-nvim',
+    config = function()
+      require("dashboard").setup{
 
+        theme = 'hyper',
+        config = {
+          week_header = {
+            enable = true,
+            append = {
+
+              "Last Pulled: "..gitVersion
+            },
+          },
+          shortcut = {
+            { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+            {
+              icon = ' ',
+              icon_hl = '@variable',
+              desc = 'Files',
+              group = 'Label',
+              action = 'Telescope find_files',
+              key = 'f',
+            },
+            {
+              desc = ' dotfiles',
+              group = 'Number',
+              action = 'Telescope dotfiles',
+              key = 'd',
+            },
+          },
+        },
+      }end,
+    dependencies = {{'nvim-tree/nvim-web-devicons'}},
+    lazy = false
+  },
   { "sitiom/nvim-numbertoggle", lazy = false },
   {
     "HiPhish/rainbow-delimiters.nvim",

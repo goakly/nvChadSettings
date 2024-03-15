@@ -1,5 +1,5 @@
 local M = {}
-
+local gitVersion = require("core.utils").get_latest_git_timestamp()
 M.options = {
   nvchad_branch = "v2.0",
 }
@@ -49,11 +49,11 @@ M.ui = {
 
   -- nvdash (dashboard)
   nvdash = {
-    load_on_startup = true,
+    load_on_startup = false,
 
     header = {
       "           HI :)           ",
-
+      "                           ",
 
     },
 
