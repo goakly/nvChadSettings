@@ -120,8 +120,10 @@ M.get_latest_git_timestamp = function ()
   local gitLogFilePath = homeDirectory .. "/.config/nvim/.git/logs/HEAD"
   if not GitFileExists(gitLogFilePath) then return "N/A" end
   local lastLine = GetLastLineOfFile(gitLogFilePath)
+  -- print(lastLine)
   if not lastLine then return {} end
-  local lastChangeDateUnformatted = GetSubstringFromPattern(lastLine,"%d%d%d%d%d%d%d%d%d%d")
+  local lastChangeDateUnformatted = GetSubstringFromPattern(lastLine,"%s%d%d%d%d%d%d%d%d%d%d%s")
+  -- print(lastChangeDateUnformatted)
   if not lastChangeDateUnformatted then return "N/A" end
   local lastChangeDateFormatted = os.date("%Y-%m-%d %H:%M:%S",tonumber(lastChangeDateUnformatted))
   return lastChangeDateFormatted
