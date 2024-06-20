@@ -1,60 +1,73 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 local gitVersion = require("core.utils").get_latest_git_timestamp()
 --@type NvPluginSpec[]
 local plugins = {
-
   -- Override plugin definition options
-  {"ErichDonGubler/lsp_lines.nvim"},
-  {"tpope/vim-fugitive",
-    lazy = false
+  { "tpope/vim-fugitive", lazy = false },
+  -- Breadcrumbs
+  {"Bekaboo/dropbar.nvim",
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    },
+    lazy=false
   },
+  -- Shows vim shortcuts in editor
+  { "tris203/precognition.nvim", lazy = false,
+    opts = {
+     startVisible = false,
+    },},
+  -- Vim startup dashboard
   {
-    'nvimdev/dashboard-nvim',
+    "nvimdev/dashboard-nvim",
     config = function()
-      require("dashboard").setup{
+      require("dashboard").setup {
 
-        theme = 'hyper',
+        theme = "hyper",
         config = {
           week_header = {
             enable = true,
             append = {
-
-              "Last Pulled: "..gitVersion
+              "Last Pulled: " .. gitVersion,
             },
           },
           shortcut = {
-            { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+            { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
             {
-              icon = ' ',
-              icon_hl = '@variable',
-              desc = 'Files',
-              group = 'Label',
-              action = 'Telescope find_files',
-              key = 'f',
+              icon = " ",
+              icon_hl = "@variable",
+              desc = "Files",
+              group = "Label",
+              action = "Telescope find_files",
+              key = "f",
             },
             {
-              desc = ' dotfiles',
-              group = 'Number',
-              action = 'Telescope dotfiles',
-              key = 'd',
+              desc = " dotfiles",
+              group = "Number",
+              action = "Telescope dotfiles",
+              key = "d",
             },
           },
         },
-      }end,
-    dependencies = {{'nvim-tree/nvim-web-devicons'}},
-    lazy = false
+      }
+    end,
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
+    lazy = false,
   },
+  --Automatically toggles relative line numbers
   { "sitiom/nvim-numbertoggle", lazy = false },
+  --Adds colors to bracket pairs
   {
     "HiPhish/rainbow-delimiters.nvim",
     lazy = false,
   },
+  --Adds colors to window separators to indicate active window
   {
     "nvim-zh/colorful-winsep.nvim",
     config = true,
     event = { "WinNew" },
   },
+  --Adds line to lsp messages to cause
   { "ErichDonGubler/lsp_lines.nvim" },
   {
     "neovim/nvim-lspconfig",
@@ -73,18 +86,10 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
   {
-    {
-      "kdheepak/lazygit.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim"
-      },
-      enabled = true,
-      lazy = false,
-    },
     -- override plugin configs
     {
       "williamboman/mason.nvim",
-      opts = overrides.mason
+      opts = overrides.mason,
     },
 
     {
@@ -105,6 +110,7 @@ local plugins = {
         require("better_escape").setup()
       end,
     },
+    -- Adds color to arguments passed to function
     {
       "m-demare/hlargs.nvim",
       init = function()
@@ -133,7 +139,7 @@ local plugins = {
           },
         }
       end,
-    }
+    },
     -- To make a plugin not be loaded
     -- {
     --   "NvChad/nvim-colorizer.lua",
@@ -147,6 +153,6 @@ local plugins = {
     --   "mg979/vim-visual-multi",
     --   lazy = false,
     -- }
-  }
+  },
 }
 return plugins
