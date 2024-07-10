@@ -7,7 +7,12 @@ local M = {}
 ---@type Base46HLGroupsList
 M.override = {
   Comment = {
+    fg={"light_grey",10},
     italic = true,
+  },
+  Visual = {
+    bg = { "light_grey",-20 },
+    italic = true
   },
 }
 
