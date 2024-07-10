@@ -8,3 +8,7 @@ coc-settings.json
 lazy-lock.json
 after
 **/.DS_Store
+lua/core/init_BACKUP_995354.lua
+lua/core/init_BASE_995354.lua
+lua/core/init_LOCAL_995354.lua
+lua/core/init_REMOTE_995354.lua
