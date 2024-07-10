@@ -3,6 +3,7 @@ local overrides = require "custom.configs.overrides"
 local gitVersion = require("core.utils").get_latest_git_timestamp()
 --@type NvPluginSpec[]
 local plugins = {
+  {"miyakogi/conoline.vim", lazy= false},
   -- Override plugin definition options
   { "tpope/vim-fugitive", lazy = false },
   -- Breadcrumbs
