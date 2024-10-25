@@ -1,8 +1,8 @@
 local opt = vim.opt
 local g = vim.g
 local config = require("core.utils").load_config()
-
 -- vim.lsp.set_log_level("debug")
+-- print(gitVersion)
 -------------------------------------- globals -----------------------------------------
 g.nvchad_theme = config.ui.theme
 g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
@@ -11,7 +11,7 @@ g.transparency = config.ui.transparency
 
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
-opt.showmode = false
+opt.showmode = false      
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true

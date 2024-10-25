@@ -4,5 +4,3 @@
 -- autocmd("VimResized", {
 --   pattern = "*",
 --   command = "tabdo wincmd =",
-vim.api.nvim_set_keymap("n","dd","\"_dd",{ noremap = true })
-vim.api.nvim_set_keymap("n","DD","_dd",{ noremap = true })

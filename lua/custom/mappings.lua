@@ -9,8 +9,27 @@ M.general = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
     ["<leader>vs"] = { "<cmd> vs <CR>", "Split vertical", opts = { nowait = true } },
-    ["<leader>hs"] = { "<cmd> hs <CR>", "Split Horizontal", opts = { nowait = true } },
+    ["<leader>hs"] = { "<cmd> split <CR>", "Split Horizontal", opts = { nowait = true } },
 
+    ["<leader>pc"] = {
+      function()
+        if require("precognition").toggle() then
+          vim.notify "precognition on"
+        else
+          vim.notify "precognition off"
+        end
+      end,
+      "Toggle Precognintion",
+      opts = { nowait = true },
+    },
+
+    ["<leader>pp"] = {
+      function()
+        require("precognition").peek()
+      end,
+      "Toggle Precognintion",
+      opts = { nowait = true },
+    },
     -- LSP line mappings
     ["<leader>yl"] = {
       function()
@@ -41,7 +60,6 @@ M.general = {
     [">"] = { ">gv", "indent" },
   },
 }
-
 
 -- more keybinds!
 

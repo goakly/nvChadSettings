@@ -49,7 +49,7 @@ M.remove_disabled_keys = function(chadrc_mappings, default_mappings)
   end
 
   return default_mappings
-end
+end   
 
 M.load_mappings = function(section, mapping_opt)
   vim.schedule(function()
@@ -115,4 +115,35 @@ M.lazy_load = function(plugin)
   })
 end
 
+M.get_latest_git_timestamp = function ()
+  local homeDirectory = os.getenv("HOME")
+  local gitLogFilePath = homeDirectory .. "/.config/nvim/.git/logs/HEAD"
+  if not GitFileExists(gitLogFilePath) then return "N/A" end
+  local lastLine = GetLastLineOfFile(gitLogFilePath)
+  -- print(lastLine)
+  if not lastLine then return {} end
+  local lastChangeDateUnformatted = GetSubstringFromPattern(lastLine,"%s%d%d%d%d%d%d%d%d%d%d%s")
+  -- print(lastChangeDateUnformatted)
+  if not lastChangeDateUnformatted then return "N/A" end
+  local lastChangeDateFormatted = os.date("%Y-%m-%d %H:%M:%S",tonumber(lastChangeDateUnformatted))
+  return lastChangeDateFormatted
+end
+
+function GetSubstringFromPattern(logFileString,pattern)
+  return string.sub(logFileString,string.find(logFileString,pattern))
+end
+
+function GetLastLineOfFile(targetFilePath)
+  local lines = {}
+  for line in io.lines(targetFilePath) do
+    lines[#lines+1] = line
+  end
+  return lines[#lines]
+end
+
+function GitFileExists(gitLogFilePath)
+  local gitLogFile = io.open(gitLogFilePath,"rb")
+  if  gitLogFile then gitLogFile:close() end
+  return gitLogFile ~= nil
+end
 return M
