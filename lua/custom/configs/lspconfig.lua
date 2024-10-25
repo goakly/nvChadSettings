@@ -1,10 +1,10 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
-
+-- require('java').setup()
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd","jdtls","gopls","groovyls"}
+local servers = { "html", "cssls", "ts_ls", "clangd","jdtls","gopls","groovyls","jsonls", "bashls","lemminx"}
 
 for _, lsp in ipairs(servers) do
 
@@ -14,7 +14,7 @@ for _, lsp in ipairs(servers) do
   }
 
 end
-
+-- lspconfig.jdtls.setup({})
 -- Custom setup for groovyls
 lspconfig.groovyls.setup {
   on_attach = on_attach,
