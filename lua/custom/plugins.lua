@@ -3,7 +3,9 @@ local overrides = require "custom.configs.overrides"
 local gitVersion = require("core.utils").get_latest_git_timestamp()
 --@type NvPluginSpec[]
 local plugins = {
+  --Easier movement to word
   {'easymotion/vim-easymotion', lazy=false},
+  -- Better java language support
   {'nvim-java/nvim-java'},
   {"miyakogi/conoline.vim", lazy= false},
   -- Override plugin definition options
@@ -25,8 +27,8 @@ local plugins = {
     "nvimdev/dashboard-nvim",
     config = function()
       require("dashboard").setup {
-
         theme = "hyper",
+        shortcut_type = "number",
         config = {
           week_header = {
             enable = true,
@@ -70,7 +72,7 @@ local plugins = {
     config = true,
     event = { "WinNew" },
   },
-  --Adds line to lsp messages to cause
+  --Adds line from lsp messages to cause
   { "ErichDonGubler/lsp_lines.nvim" },
   {
     "neovim/nvim-lspconfig",
@@ -94,12 +96,10 @@ local plugins = {
       "williamboman/mason.nvim",
       opts = overrides.mason,
     },
-
     {
       "nvim-treesitter/nvim-treesitter",
       opts = overrides.treesitter,
     },
-
     {
       "nvim-tree/nvim-tree.lua",
       opts = overrides.nvimtree,
