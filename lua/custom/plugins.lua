@@ -1,5 +1,6 @@
 local overrides = require "custom.configs.overrides"
 
+-- TODO Move custom plugins here
 local gitVersion = require("core.utils").get_latest_git_timestamp()
 --@type NvPluginSpec[]
 local plugins = {
