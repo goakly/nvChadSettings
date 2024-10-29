@@ -1,28 +1,27 @@
 local overrides = require "custom.configs.overrides"
 
--- TODO Move custom plugins here
 local gitVersion = require("core.utils").get_latest_git_timestamp()
 --@type NvPluginSpec[]
 local plugins = {
   --Easier movement to word
-  {'easymotion/vim-easymotion', lazy=false},
+  { "easymotion/vim-easymotion", lazy = false },
   -- Better java language support
-  {'nvim-java/nvim-java'},
-  {"miyakogi/conoline.vim", lazy= false},
+  { "nvim-java/nvim-java" },
+  { "miyakogi/conoline.vim", lazy = false },
   -- Override plugin definition options
-  {"tpope/vim-fugitive", lazy = false },
+  { "tpope/vim-fugitive", lazy = false },
   -- Breadcrumbs
-  {"Bekaboo/dropbar.nvim",
+  {
+    "Bekaboo/dropbar.nvim",
     dependencies = {
-      'nvim-telescope/telescope-fzf-native.nvim'
+      "nvim-telescope/telescope-fzf-native.nvim",
     },
-    lazy=false
+    lazy = false,
   },
   -- Shows vim shortcuts in editor
-  { "tris203/precognition.nvim", lazy = false,
-    opts = {
-     startVisible = false,
-    },},
+  { "tris203/precognition.nvim", lazy = false, opts = {
+    startVisible = false,
+  } },
   -- Vim startup dashboard
   {
     "nvimdev/dashboard-nvim",
@@ -90,6 +89,49 @@ local plugins = {
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
+  },
+  {
+    "vijaymarupudi/nvim-fzf",
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+  },
+  {
+    "nvim-lua/plenary.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
+  {
+    "RRethy/vim-illuminate",
+  },
+  {
+    "github/copilot.vim",
+    lazy = true,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = false, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+    lazy = true,
   },
   {
     -- override plugin configs
