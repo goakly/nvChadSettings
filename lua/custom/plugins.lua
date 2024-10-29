@@ -1,6 +1,5 @@
 local overrides = require "custom.configs.overrides"
 
-local gitVersion = require("core.utils").get_latest_git_timestamp()
 --@type NvPluginSpec[]
 local plugins = {
   --Easier movement to word
@@ -8,7 +7,7 @@ local plugins = {
   -- Better java language support
   { "nvim-java/nvim-java" },
   { "miyakogi/conoline.vim", lazy = false },
-  -- Override plugin definition options
+  -- Some git tools.
   { "tpope/vim-fugitive", lazy = false },
   -- Breadcrumbs
   {
@@ -63,11 +62,13 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
   {
+    -- Tools for working with content between brackets, quotes, etc.
     "vijaymarupudi/nvim-fzf",
   },
+  -- Tools for working with content between brackets, quotes, etc.
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup {
@@ -84,6 +85,7 @@ local plugins = {
       require("lsp_lines").setup()
     end,
   },
+  -- Underlines other usages of the word under the cursor
   {
     "RRethy/vim-illuminate",
     lazy = false
