@@ -15,7 +15,7 @@ local options = {
     vim.keymap.set("n", "h", api.node.navigate.parent, opts "Up")
     vim.keymap.set("n", "l", api.node.open.edit, opts "Open")
     -- open file with space
-    vim.keymap.set("n", "<Space>", api.node.open.edit, opts "Open")
+    -- vim.keymap.set("n", "<Space>", api.node.open.edit, opts "Open")
   end,
   filters = {
     dotfiles = false,
