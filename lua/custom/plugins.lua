@@ -86,6 +86,7 @@ local plugins = {
   },
   {
     "RRethy/vim-illuminate",
+    lazy = false
   },
   {
     "github/copilot.vim",
