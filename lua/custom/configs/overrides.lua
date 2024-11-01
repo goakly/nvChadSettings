@@ -12,6 +12,11 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
+    "java",
+    "groovy",
+    "kotlin",
+    "xml",
+    "bash"
   },
   indent = {
     enable = true,
@@ -27,19 +32,24 @@ M.mason = {
     -- lua stuff
     "lua-language-server",
     "stylua",
+    "jdtls",
 
+    "gopls",
     -- web dev stuff
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
     "deno",
     "prettier",
+    "json-lsp",
+    "xml-formatter",
 
     -- c/cpp stuff
     "clangd",
     "clang-format",
   },
 }
+
 local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.5 -- You can change this too
 -- git support in nvimtree
