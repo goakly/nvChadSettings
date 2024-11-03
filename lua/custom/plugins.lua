@@ -2,6 +2,12 @@ local overrides = require "custom.configs.overrides"
 
 --@type NvPluginSpec[]
 local plugins = {
+  -- Tool to analyze key mapping.
+  {
+    "meznaric/key-analyzer.nvim",
+    lazy = false,
+    outs = {},
+  },
   --Easier movement to word
   { "easymotion/vim-easymotion", lazy = false },
   -- Better java language support
@@ -88,7 +94,7 @@ local plugins = {
   -- Underlines other usages of the word under the cursor
   {
     "RRethy/vim-illuminate",
-    lazy = false
+    lazy = false,
   },
   {
     "github/copilot.vim",
