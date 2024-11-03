@@ -34,7 +34,9 @@ M.mason = {
     "stylua",
     "jdtls",
 
+    -- Golang
     "gopls",
+
     -- web dev stuff
     "css-lsp",
     "html-lsp",
