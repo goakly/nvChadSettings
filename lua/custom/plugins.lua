@@ -23,10 +23,6 @@ local plugins = {
     },
     lazy = false,
   },
-  -- Shows vim shortcuts in editor
-  { "tris203/precognition.nvim", lazy = false, opts = {
-    startVisible = false,
-  } },
   -- Vim startup dashboard
   {
     "nvimdev/dashboard-nvim",
