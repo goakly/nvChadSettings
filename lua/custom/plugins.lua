@@ -2,6 +2,13 @@ local overrides = require "custom.configs.overrides"
 local snacks = require "custom.configs.snacks"
 --@type NvPluginSpec[]
 local plugins = {
+  -- Generates documentaion block
+  {
+    "danymat/neogen",
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    -- version = "*"
+  },
   -- My favorite cmd git tool
   {
     "kdheepak/lazygit.nvim",
