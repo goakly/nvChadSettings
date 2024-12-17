@@ -16,7 +16,7 @@ local options = {
     vim.keymap.set("n", "l", api.node.open.edit, opts "Open")
     vim.keymap.set("n", "<Escape>", api.tree.close, opts "Close")
     -- open file with space
-    -- vim.keymap.set("n", "<Space>", api.node.open.edit, opts "Open")
+    vim.keymap.set("n", "<Space>", api.node.open.edit, opts "Open")
   end,
   filters = {
     dotfiles = false,
@@ -64,7 +64,7 @@ local options = {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = false,
+        git = true,
       },
 
       glyphs = {
