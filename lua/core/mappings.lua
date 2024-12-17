@@ -29,6 +29,7 @@ M.general = {
     ["<A-k>"] = { "<cmd> m .-2 <CR>==", "Move line up by one" },
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
+
     ["<C-Up>"] = { "<cmd> tabnew <CR>", "New Tab" },
     ["<C-Right>"] = { "<cmd> tabnext <CR>", "Next Tab" },
     ["<C-Down>"] = { "<cmd> tabclose <CR>", "Previous Tab" },
@@ -291,6 +292,7 @@ M.nvimtree = {
   n = {
     -- toggle
     ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<Escape>"] = { "<cmd> NvimTreeClose <CR>", "Toggle nvimtree" },
 
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
