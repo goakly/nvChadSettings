@@ -27,8 +27,6 @@ M.general = {
     ["<C-k>"] = { "<C-w>k", "Window up" },
     ["<A-j>"] = { "<cmd> m .+1 <CR>==", "Move line down by one" },
     ["<A-k>"] = { "<cmd> m .-2 <CR>==", "Move line up by one" },
-    -- Select all
-    ["<C-a>"] = { "<Home>ggvG", "Select All" },
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
     ["<C-Up>"] = { "<cmd> tabnew <CR>", "New Tab" },
