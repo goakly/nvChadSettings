@@ -11,6 +11,11 @@ M.general = {
     ["<leader>vs"] = { "<cmd> vs <CR>", "Split vertical", opts = { nowait = true } },
     ["<leader>hs"] = { "<cmd> split <CR>", "Split Horizontal", opts = { nowait = true } },
 
+    -- Use telescope for diagnostics
+    ["<leader>q"] = {
+      "<ESC><cmd>Telescope diagnostics bufnr=0 <CR>",
+      "Diagnostic setloclist",
+    },
     -- LSP line mappings
     ["<leader>yl"] = {
       function()
