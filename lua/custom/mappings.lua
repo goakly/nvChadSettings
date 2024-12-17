@@ -8,13 +8,13 @@ M.general = {
 
     -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-    ["<leader>vs"] = { "<cmd> vs <CR>", "Split vertical", opts = { nowait = true } },
-    ["<leader>hs"] = { "<cmd> split <CR>", "Split Horizontal", opts = { nowait = true } },
+    ["<leader>vs"] = { "<cmd> vs <CR>", "Split vertical" },
+    ["<leader>hs"] = { "<cmd> split <CR>", "Split Horizontal" },
 
     -- Use telescope for diagnostics
     ["<leader>q"] = {
       "<ESC><cmd>Telescope diagnostics bufnr=0 <CR>",
-      "Diagnostic setloclist",
+      "Show Buffer Diagnostics",
     },
     -- LSP line mappings
     ["<leader>yl"] = {
@@ -23,7 +23,6 @@ M.general = {
         vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_lines }
       end,
       "Toggle lsp_lines",
-      opts = { nowait = true },
     },
     ["<leader>yo"] = {
       function()
@@ -31,7 +30,6 @@ M.general = {
         vim.diagnostic.config { virtual_text = false }
       end,
       "Turns off diagnostic text",
-      opts = { nowait = true },
     },
     ["<leader>yt"] = {
       function()
@@ -39,7 +37,6 @@ M.general = {
         vim.diagnostic.config { virtual_text = true }
       end,
       "Toggle LSP diagnostic text",
-      opts = { nowait = true },
     },
   },
   v = {
