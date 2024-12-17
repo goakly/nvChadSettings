@@ -81,7 +81,7 @@ local options = {
           arrow_closed = "",
         },
         git = {
-          unstaged = "✗",
+          unstaged = "",
           staged = "✓",
           unmerged = "",
           renamed = "➜",
