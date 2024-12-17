@@ -33,18 +33,18 @@ local plugins = {
   -- Some quality of life stuff.
   {
     "folke/snacks.nvim",
-    priority = 1000,
+    priority = 1002,
     lazy = false,
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
       notifier = {
         enabled = true,
-        timeout = 3000,
+        timeout = 3002,
       },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
-      words = { enabled = true },
+      words = { enabled = false },
       styles = {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
@@ -76,11 +76,12 @@ local plugins = {
     outs = {},
   },
   --Easier movement to word
+  --TODO move key mapping to own file
   {
-  "folke/flash.nvim",
-  event = "VeryLazy",
-  ---@type Flash.Config
-  opts = {},
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
   -- stylua: ignore
   keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -230,7 +231,7 @@ local plugins = {
     -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
     -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
     -- {
-    --   "mg979/vim-visual-multi",
+    --   "mg981/vim-visual-multi",
     --   lazy = false,
     -- }
   },
