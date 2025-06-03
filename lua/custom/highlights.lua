@@ -14,6 +14,9 @@ M.override = {
     bg = { "light_grey",-20 },
     italic = true
   },
+  CursorLine = {
+    bg = {"black",5}
+  }
 }
 
 ---@type HLTable
