@@ -2,6 +2,59 @@ local overrides = require "custom.configs.overrides"
 local snacks = require "custom.configs.snacks"
 --@type NvPluginSpec[]
 local plugins = {
+  -- install without yarn or npm
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    lazy = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
@@ -16,47 +69,24 @@ local plugins = {
       { "hrsh7th/cmp-nvim-lsp" }, -- Required
       { "L3MON4D3/LuaSnip" }, -- Required
     },
-    config = function ()
-         local lsp = require("lsp-zero")
-            lsp.preset("recommended")
-            lsp.on_attach(function(client, bufnr)
-                require("lsp-format").on_attach(client, bufnr)
-            end)
-            lsp.nvim_workspace()
-            lsp.setup()
-            vim.diagnostic.config { virtual_text = true }
-    end
+    config = function()
+      local lsp = require "lsp-zero"
+      lsp.preset "recommended"
+      lsp.on_attach(function(client, bufnr)
+        require("lsp-format").on_attach(client, bufnr)
+      end)
+      lsp.nvim_workspace()
+      lsp.setup()
+      vim.diagnostic.config { virtual_text = true }
+    end,
   },
   {
     "mfussenegger/nvim-jdtls",
   },
-  -- Generates documentaion block
   {
     "danymat/neogen",
+    lazy = false,
     config = true,
-    -- Uncomment next line if you want to follow only stable versions
-    -- version = "*"
-  },
-  -- My favorite cmd git tool
-  {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
   },
   -- Some quality of life stuff.
   {
@@ -85,6 +115,9 @@ local plugins = {
   -- Changes the UI for notifications and the command line
   {
     "folke/noice.nvim",
+    config = function()
+      require "custom.configs.noice"
+    end,
     event = "VeryLazy",
     opts = {
       -- add any options here
@@ -108,19 +141,69 @@ local plugins = {
     "folke/flash.nvim",
     event = "VeryLazy",
     ---@type Flash.Config
-    opts = {},
-  -- stylua: ignore
-  keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    opts = {
+      label = {
+        rainbow = {
+          enabled = true,
+        },
+      },
+      modes = {
+        char = {
+          jump_lables = true,
+        },
+        search = {
+          enabled = true,
+        },
+      },
+    },
+    -- ttylua: ignore
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-p>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
     },
   },
   -- Better java language support
   { "nvim-java/nvim-java" },
-  { "miyakogi/conoline.vim", lazy = false },
+  -- Highlights current line
+  -- { "miyakogi/conoline.vim", lazy = false },
   -- Some git tools.
   { "tpope/vim-fugitive", lazy = false },
   -- Breadcrumbs
@@ -160,7 +243,7 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
         end,
