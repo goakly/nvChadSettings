@@ -2,6 +2,34 @@ local overrides = require "custom.configs.overrides"
 local snacks = require "custom.configs.snacks"
 --@type NvPluginSpec[]
 local plugins = {
+  {
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
+    dependencies = {
+      -- LSP Support
+      { "neovim/nvim-lspconfig" }, -- Required
+      { "williamboman/mason.nvim" }, -- Optional
+      { "williamboman/mason-lspconfig.nvim" }, -- Optional
+
+      -- Autocompletion
+      { "hrsh7th/nvim-cmp" }, -- Required
+      { "hrsh7th/cmp-nvim-lsp" }, -- Required
+      { "L3MON4D3/LuaSnip" }, -- Required
+    },
+    config = function ()
+         local lsp = require("lsp-zero")
+            lsp.preset("recommended")
+            lsp.on_attach(function(client, bufnr)
+                require("lsp-format").on_attach(client, bufnr)
+            end)
+            lsp.nvim_workspace()
+            lsp.setup()
+            vim.diagnostic.config { virtual_text = true }
+    end
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+  },
   -- Generates documentaion block
   {
     "danymat/neogen",
@@ -33,18 +61,18 @@ local plugins = {
   -- Some quality of life stuff.
   {
     "folke/snacks.nvim",
-    priority = 1002,
+    priority = 1000,
     lazy = false,
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
       notifier = {
         enabled = true,
-        timeout = 3002,
+        timeout = 3000,
       },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
-      words = { enabled = false },
+      words = { enabled = true },
       styles = {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
@@ -76,7 +104,6 @@ local plugins = {
     outs = {},
   },
   --Easier movement to word
-  --TODO move key mapping to own file
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -231,7 +258,7 @@ local plugins = {
     -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
     -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
     -- {
-    --   "mg981/vim-visual-multi",
+    --   "mg979/vim-visual-multi",
     --   lazy = false,
     -- }
   },
