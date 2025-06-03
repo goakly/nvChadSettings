@@ -16,7 +16,7 @@ M.treesitter = {
     "groovy",
     "kotlin",
     "xml",
-    "bash"
+    "bash",
   },
   indent = {
     enable = true,
@@ -25,7 +25,6 @@ M.treesitter = {
     -- },
   },
 }
-
 
 M.mason = {
   ensure_installed = {

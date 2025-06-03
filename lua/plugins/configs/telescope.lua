@@ -33,7 +33,7 @@ local options = {
     file_sorter = require("telescope.sorters").get_fuzzy_file,
     file_ignore_patterns = { "node_modules" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = { "truncate" },
+    path_display = { "filename_first" },
     winblend = 0,
     border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -46,6 +46,7 @@ local options = {
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
       n = { ["q"] = require("telescope.actions").close },
+      i = { ["<C-j>"] = require("telescope.actions").move_selection_next ,["<C-k>"] = require("telescope.actions").move_selection_previous },
     },
   },
 

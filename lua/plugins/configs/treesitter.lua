@@ -1,5 +1,5 @@
 local options = {
-  ensure_installed = { "lua","java","groovy","go","javascript","kotlin" },
+  ensure_installed = { "lua", "java", "groovy", "go", "javascript","typescript", "kotlin" },
 
   highlight = {
     enable = true,
