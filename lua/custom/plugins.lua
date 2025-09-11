@@ -106,6 +106,15 @@ local plugins = {
         enabled = false,
         timeout = 3000,
       },
+      scroll = {
+        enabled = true,
+      },
+      scope = {
+        enabled = true,
+      },
+      indent = {
+        enabled = true,
+      },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
@@ -158,7 +167,7 @@ local plugins = {
           jump_lables = true,
         },
         search = {
-          enabled = true,
+          enabled = false,
         },
       },
     },
