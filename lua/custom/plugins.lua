@@ -4,6 +4,12 @@ local snacks = require "custom.configs.snacks"
 local plugins = {
   -- install without yarn or npm
   {
+    "folke/todo-comments.nvim",
+    dependencies = {"nvim-lua/plenary.nvim"},
+    opts={
+    }
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     lazy = false,
     dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
