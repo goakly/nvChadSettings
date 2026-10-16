@@ -2,7 +2,6 @@ return require("hlargs").setup {
   use_colorpalette = false,
   sequential_colorpalette = true,
   colorpalette = {
-    { fg = "#ef9062" },
     { fg = "#3AC6BE" },
     { fg = "#35D27F" },
     { fg = "#EB75D6" },
