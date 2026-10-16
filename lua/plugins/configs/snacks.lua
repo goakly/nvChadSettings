@@ -1,4 +1,25 @@
 local M = {}
+
+M.opts = {
+  bigfile = { enabled = true },
+  notifier = {
+    enabled = false,
+    timeout = 3000,
+  },
+  picker = { enabled = true },
+  scroll = { enabled = true },
+  indent = { enabled = true },
+  quickfile = { enabled = true },
+  statuscolumn = { enabled = true },
+  words = { enabled = true },
+  scope = { enabled = true },
+  styles = {
+    notification = {
+      wo = { wrap = true },
+    },
+  },
+}
+
 M.keys = {
   -- Top Pickers & Explorer
   {
@@ -500,14 +521,12 @@ M.init = function()
   vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()
-      -- Setup some globals for debugging (lazy-loaded)
       _G.dd = function(...)
         Snacks.debug.inspect(...)
       end
       _G.bt = function()
         Snacks.debug.backtrace()
       end
-      -- Override print to use snacks for `:=` command
       if vim.fn.has "nvim-0.11" == 1 then
         vim._print = function(_, ...)
           dd(...)
@@ -515,7 +534,6 @@ M.init = function()
       else
         vim.print = _G.dd
       end
-      -- Create some toggle mappings
       Snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"
       Snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>uw"
       Snacks.toggle.diagnostics():map "<leader>ud"
