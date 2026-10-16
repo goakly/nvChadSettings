@@ -1,13 +1,10 @@
-local gitVersion = require("core.utils").get_latest_git_timestamp()
 local dashboardConfig = require("dashboard").setup {
   theme = "hyper",
   shortcut_type = "number",
   config = {
     week_header = {
       enable = true,
-      append = {
-        "Last Pulled: " .. gitVersion,
-      },
+      append = {},
     },
     shortcut = {
       { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
