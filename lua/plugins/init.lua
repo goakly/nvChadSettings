@@ -5,24 +5,20 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
-    opts = require "configs.conform",
+    opts = require "plugins.configs.conform",
   },
 
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "configs.lspconfig"
+      require "plugins.configs.lspconfig"
     end,
   },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
+    opts = require "plugins.configs.todo_comments",
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -36,7 +32,7 @@ return {
   },
   {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for plugins.setup.
+    opts = require "plugins.configs.trouble",
     cmd = "Trouble",
     keys = {
       {
@@ -88,22 +84,11 @@ return {
       { "hrsh7th/cmp-nvim-lsp" }, -- Required
       { "L3MON4D3/LuaSnip" }, -- Required
     },
-    config = function()
-      local lsp = require "lsp-zero"
-      lsp.preset "recommended"
-      lsp.on_attach(function(client, bufnr)
-        require("lsp-format").on_attach(client, bufnr)
-      end)
-      lsp.nvim_workspace()
-      lsp.setup()
-      vim.diagnostic.config { virtual_text = true }
-    end,
+    config = require "plugins.configs.lspzero",
   },
   {
     "mfussenegger/nvim-jdtls",
-    config = function ()
-      local config = jdtls
-    end,
+    config = require "plugins.configs.jdtls",
   },
   {
     "danymat/neogen",
@@ -175,21 +160,7 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     ---@type Flash.Config
-    opts = {
-      label = {
-        rainbow = {
-          enabled = true,
-        },
-      },
-      modes = {
-        char = {
-          jump_lables = true,
-        },
-        search = {
-          enabled = true,
-        },
-      },
-    },
+    opts = require "plugins.configs.flash",
     -- ttylua: ignore
     keys = {
       {
