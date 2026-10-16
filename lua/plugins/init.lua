@@ -1,6 +1,5 @@
 local overrides = require "plugins.configs.overrides"
 local snacks = require "plugins.configs.snacks"
-local jdtls = require "plugins.configs.jdtls"
 
 return {
   {
@@ -65,9 +64,7 @@ return {
 
   {
     "mfussenegger/nvim-jdtls",
-    config = function()
-      local config = jdtls
-    end,
+    config = require "plugins.configs.jdtls",
   },
 
   {
@@ -80,28 +77,9 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.config
-    opts = {
-      bigfile = { enabled = true },
-      notifier = {
-        enabled = false,
-        timeout = 3000,
-      },
-      picker = { enabled = true },
-      scroll = { enabled = true },
-      indent = { enabled = true },
-      quickfile = { enabled = true },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-      scope = { enabled = true },
-      styles = {
-        notification = {
-          wo = { wrap = true },
-        },
-      },
-    },
+    opts = snacks.opts,
     keys = snacks.keys,
-    init = snacks.init(),
+    init = snacks.init,
   },
 
   {
@@ -129,46 +107,11 @@ return {
     ---@type Flash.Config
     opts = require "plugins.configs.flash",
     keys = {
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Treesitter Search",
-      },
-      {
-        "<c-p>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
-      },
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-p>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
 
@@ -222,9 +165,7 @@ return {
 
   {
     "nvim-lua/plenary.nvim",
-    config = function()
-      require("lsp_lines").setup()
-    end,
+    config = require "plugins.configs.lsp_lines",
   },
 
   {
@@ -261,11 +202,7 @@ return {
         {
           "L3MON4D3/LuaSnip",
           dependencies = "rafamadriz/friendly-snippets",
-          opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-          config = function(_, opts)
-            require("luasnip").config.set_config(opts)
-            require "nvchad.configs.luasnip"
-          end,
+          opts = require "plugins.configs.luasnip",
         },
         {
           "windwp/nvim-autopairs",
@@ -273,11 +210,7 @@ return {
             fast_wrap = {},
             disable_filetype = { "TelescopePrompt", "vim" },
           },
-          config = function(_, opts)
-            require("nvim-autopairs").setup(opts)
-            local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-            require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-          end,
+          config = require "plugins.configs.autopairs",
         },
         {
           "saadparwaiz1/cmp_luasnip",
